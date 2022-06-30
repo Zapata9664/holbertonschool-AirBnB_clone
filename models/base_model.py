@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Module whit class BaseModel"""
 
-from pydoc import classname
 from uuid import uuid4
 from datetime import datetime
 
