@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 """Module with class FileStorage"""
 from models.base_model import BaseModel
+from models.user import User
 import json
 
 classtype = {
     "BaseModel": BaseModel,
+    "User": User,
+
 }
 
 class FileStorage:
