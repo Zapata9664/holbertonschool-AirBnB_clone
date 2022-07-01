@@ -3,8 +3,6 @@
 
 from uuid import uuid4
 from datetime import datetime
-from venv import create
-
 
 class BaseModel:
     """class that defines all common
