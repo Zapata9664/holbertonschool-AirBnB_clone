@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Module with class FileStorage"""
+from models.base_model import BaseModel
 import json
 
 
@@ -18,3 +19,9 @@ class FileStorage:
         with key <obj class name>.id"""
         FileStorage.__objects["{}.{}".format(
             obj.__class__.__name__, obj.id)] = obj
+
+    def save(self):
+        """"""
+
+        with open(FileStorage.__file_path, "w") as file:
+            json.dump(FileStorage.__objects, file)
