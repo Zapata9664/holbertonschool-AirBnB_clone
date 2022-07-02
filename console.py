@@ -2,6 +2,8 @@
 """Module with class HBNBComman"""
 import cmd
 import sys
+from unittest import installHandler
+from venv import create
 from models.review import Review
 from models.place import Place
 from models.amenity import Amenity
@@ -9,6 +11,8 @@ from models.city import City
 from models.state import State
 from models.base_model import BaseModel
 from models.user import User
+from models.engine.file_storage import FileStorage
+import json
 
 classtype = {
     "BaseModel": BaseModel,
@@ -71,8 +75,16 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(tokens) == 1:
             print("** instance id missing **")
-        userfile = open("file.json", "r")
-        print(userfile.read())
+        elif tokens[0] in classtype and len(tokens) > 1:
+            instaceToSearch = tokens[0] + "." + tokens[1]
+            with open("file.json", "r") as file:
+                data = json.load(file)
+                for key, value in data.items():
+                    if key == instaceToSearch:
+                        print(value)
+                        return
+                print("** no instance found **")
 
+            
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
