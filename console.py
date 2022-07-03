@@ -80,8 +80,8 @@ class HBNBCommand(cmd.Cmd):
             print(objectDic[tokens[0] + "." + tokens[1]])
         else:
             print("** no instance found **")
-    
-    def do_destroy(self,arg):
+
+    def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
         tokens = arg.split()
         objectDic = storage.all()
@@ -113,6 +113,48 @@ class HBNBCommand(cmd.Cmd):
                     new_list.append(obj.__str__())
             print(new_list)
 
-            
+    def do_update(self, arg):
+        """Updates an instance based on the class
+        name and id by adding or updating attribute"""
+        tokens = arg.split()
+        objectDic = storage.all()
+
+        ints = ["number_rooms", "number_bathrooms",
+                "max_guest", "price_by_night"]
+        floats = ["latitude", "longitude"]
+
+        if len(tokens) == 0:
+            print("** class name missing **")
+        elif tokens[0] in classtype:
+            if len(tokens) > 1:
+                if tokens[0] + "." + tokens[1] in objectDic:
+                    if len(tokens) > 2:
+                        if len(tokens) > 3:
+                            if tokens[0] == "Place":
+                                if tokens[2] in ints:
+                                    try:
+                                        tokens[3] = int(tokens[3])
+                                    except Exception:
+                                        tokens[3] = 0
+                                elif tokens[2] in floats:
+                                    try:
+                                        tokens[3] = float(tokens[3])
+                                    except Exception:
+                                        tokens[3] = 0.0
+                            setattr(objectDic[tokens[0] + "." + tokens[1]],
+                                    tokens[2], tokens[3])
+                            objectDic[tokens[0] + "." + tokens[1]].save()
+                        else:
+                            print("** value missing **")
+                    else:
+                        print("** attribute name missing **")
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
+            print("** class doesn't exist **")
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
