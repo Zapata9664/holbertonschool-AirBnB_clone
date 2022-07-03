@@ -11,7 +11,7 @@ from models.city import City
 from models.state import State
 from models.base_model import BaseModel
 from models.user import User
-from models import FileStorage
+from models.engine.file_storage import FileStorage
 from models import storage
 import json
 
@@ -46,7 +46,6 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """An empty line + ENTER shouldn’t execute anything"""
-        print("llegue")
         pass
 
     def do_create(self, arg):
@@ -69,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of an
         instance based on the class name and id"""
         tokens = arg.split()
-        dictobject = storage.all()
+        objectDic = storage.all()
 
         if len(tokens) == 0:
             print("** class name missing **")
@@ -77,24 +76,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(tokens) == 1:
             print("** instance id missing **")
-        elif tokens[0] + "." + tokens[1] not in dictobject:
-        #elif tokens[0] in classtype and len(tokens) > 1:
-            #instaceToSearch = tokens[0] + "." + tokens[1]
-            #with open("file.json", "r") as file:
-                #data = json.load(file)
-                #for key, value in data.items():
-                    #if key == instaceToSearch:
-                        #print(value)
-                        #return
-            print("** no instance found **")
+        elif tokens[0] + "." + tokens[1] in objectDic:
+            print(objectDic[tokens[0] + "." + tokens[1]])
         else:
-            print(dictobject[tokens[0] + "." + tokens[1]])
-
-    def do_destroy(self, arg):
-        """Deletes an instance based on the class name
-        and id (save the change into the JSON file)"""
+            print("** no instance found **")
+    
+    def do_destroy(self,arg):
+        """Deletes an instance based on the class name and id"""
         tokens = arg.split()
-        dictobject = storage.all()
+        objectDic = storage.all()
 
         if len(tokens) == 0:
             print("** class name missing **")
@@ -102,19 +92,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(tokens) == 1:
             print("** instance id missing **")
-        elif tokens[0] + "." + tokens[1] not in dictobject.keys():
-        #elif tokens[0] in classtype and len(tokens) > 1:
-            #instaceToSearch = tokens[0] + "." + tokens[1]
-            #with open("file.json", "r") as file:
-                #data = json.load(file)
-                #for key, value in data.items():
-                    #if key == instaceToSearch:
-                        #print(value)
-                        #return
-            print("** no instance found **")
-        else:
-            del dictobject[tokens[0] + "." + tokens[1]]
+        elif tokens[0] + "." + tokens[1] in objectDic.keys():
+            del objectDic[tokens[0] + "." + tokens[1]]
             storage.save()
+        else:
+            print("** no instance found **")
 
+            
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
