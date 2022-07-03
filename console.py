@@ -11,7 +11,8 @@ from models.city import City
 from models.state import State
 from models.base_model import BaseModel
 from models.user import User
-from models.engine.file_storage import FileStorage
+from models import FileStorage
+from models import storage
 import json
 
 classtype = {
@@ -68,6 +69,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of an
         instance based on the class name and id"""
         tokens = arg.split()
+        dictobject = storage.all()
 
         if len(tokens) == 0:
             print("** class name missing **")
@@ -75,16 +77,18 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(tokens) == 1:
             print("** instance id missing **")
-        elif tokens[0] in classtype and len(tokens) > 1:
-            instaceToSearch = tokens[0] + "." + tokens[1]
-            with open("file.json", "r") as file:
-                data = json.load(file)
-                for key, value in data.items():
-                    if key == instaceToSearch:
-                        print(value)
-                        return
-                print("** no instance found **")
+        elif tokens[0] + "." + tokens[1] not in dictobject:
+        #elif tokens[0] in classtype and len(tokens) > 1:
+            #instaceToSearch = tokens[0] + "." + tokens[1]
+            #with open("file.json", "r") as file:
+                #data = json.load(file)
+                #for key, value in data.items():
+                    #if key == instaceToSearch:
+                        #print(value)
+                        #return
+            print("** no instance found **")
+        else:
+            print(dictobject[tokens[0] + "." + tokens[1]])
 
-            
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
