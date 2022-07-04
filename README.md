@@ -3,7 +3,7 @@
 # AirBnB clone - The console :house_with_garden::bed:
 ***
 The objective of this project is to create an AirBnB clone, with a full web application, but in this first part of the project we will only implement the backend console, where we will handle the database storage and an API.
-![image](![image](https://user-images.githubusercontent.com/98331961/177218178-280195cd-ec61-402c-9cb1-0929cf6eb1d9.png)
+![image](https://user-images.githubusercontent.com/98331961/177218178-280195cd-ec61-402c-9cb1-0929cf6eb1d9.png)
 
 ## Console :black_flag:
 ***
