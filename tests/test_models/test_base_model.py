@@ -55,5 +55,37 @@ class testBaseModel(unittest.TestCase):
         self.assertLess(instance1.updated_at, instance2.updated_at)
 
 
+class TestBaseModel_save(unittest.TestCase):
+    """Tests for public instance methods: Save"""
+
+    def test_save_one_instance(self):
+        """Save one instance"""
+        instance1 = BaseModel()
+        sleep(0.2)
+        updated1 = instance1.updated_at
+        instance1.save()
+        self.assertLess(updated1, instance1.updated_at)
+
+    def test_save_tow_instances(self):
+        """Save two instances"""
+        instance1 = BaseModel()
+        sleep(0.2)
+        updated1 = instance1.updated_at
+        instance1.save()
+        updated2 = instance1.updated_at
+        self.assertLess(updated1, updated2)
+        sleep(0.2)
+        instance1.save()
+        self.assertLess(updated2, instance1.updated_at)
+
+    def test_save_updates(self):
+        """Save updates in dictionary"""
+        instance = BaseModel()
+        instance.save()
+        instanceId = "BaseModel" + "." + instance.id
+        with open("file.json", "r") as f:
+            self.assertIn(instanceId, f.read())
+
+
 if __name__ == '__main__':
     unittest.main()
