@@ -44,5 +44,5 @@ class test_file_storage(unittest.TestCase):
         self.assertIs(dic, FileStorage()._FileStorage__objects)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
