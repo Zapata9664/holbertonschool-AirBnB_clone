@@ -86,6 +86,45 @@ class TestBaseModel_save(unittest.TestCase):
         with open("file.json", "r") as f:
             self.assertIn(instanceId, f.read())
 
+class testBaseModel_dic(unittest.TestCase):
+    """Tests for public instance methods: dic"""
+
+    def test_correct_data(self):
+        """"""
+        instance = BaseModel()
+        self.assertIn("id", instance.to_dict())
+        self.assertIn("created_at", instance.to_dict())
+        self.assertIn("updated_at", instance.to_dict())
+        self.assertIn("__class__", instance.to_dict())
+
+    def test_add_attributes(self):
+        """"""
+        instance = BaseModel()
+        instance.price_by_night = "7.500"
+        instance.state_id = "Bello"
+        self.assertIn = ("price_by_night", instance.to_dict())
+        self.assertIn = ("state_id", instance.to_dict())
+
+    def test_output(self):
+        """"""
+        time = datetime.now()
+        instance = BaseModel()
+        instance.id = "0d11af78-4e5e-4a80-ac9b-faaaf8eb2432"
+        instance.created_at = instance.updated_at = time
+        dic = {
+        "id": "0d11af78-4e5e-4a80-ac9b-faaaf8eb2432",
+        "created_at": time.isoformat(),
+        "updated_at": time.isoformat(),
+        "__class__": "BaseModel"
+        }
+        self.assertDictEqual(instance.to_dict(), dic)
+
+    def test_whit_arg(self):
+        instance = BaseModel()
+        with self.assertRaises(TypeError):
+            instance.to_dict(None)
+
+
 
 if __name__ == '__main__':
     unittest.main()
