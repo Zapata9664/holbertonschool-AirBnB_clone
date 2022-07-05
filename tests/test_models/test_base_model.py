@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unittest for BaseModel"""
 
+from pickletools import string1
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
@@ -28,7 +29,7 @@ class testBaseModel(unittest.TestCase):
         """Check if created_at is a intance of BaseModel"""
         self.assertTrue(hasattr(BaseModel(), "created_at"), True)
 
-    def test_instance(self):
+    def test_instance_updatedat(self):
         """Check if updated_at is a intance of BaseModel"""
         self.assertTrue(hasattr(BaseModel(), "updated_at"), True)
 
@@ -53,6 +54,15 @@ class testBaseModel(unittest.TestCase):
         sleep(0.2)
         instance2 = BaseModel()
         self.assertLess(instance1.updated_at, instance2.updated_at)
+
+    def test_dic(self):
+        """Check if dic is a dictionary"""
+        dic = BaseModel().to_dict()
+        self.assertIsInstance(dic, dict)
+
+    def test_base_instance(self):
+        """Check if instace is a Intance of BaseModel"""
+        self.assertIsInstance(BaseModel(), BaseModel)
 
 
 class TestBaseModel_save(unittest.TestCase):
@@ -125,6 +135,13 @@ class testBaseModel_dic(unittest.TestCase):
         instance = BaseModel()
         with self.assertRaises(TypeError):
             instance.to_dict(None)
+
+
+class TestBaseModel_str(unittest.TestCase):
+    """Tests for public instance methods: dic"""
+    def test_str(self):
+        string1 = BaseModel().__str__()
+        self.assertEqual(str, type(string1))
 
 
 if __name__ == '__main__':
