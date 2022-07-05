@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Unittest for BaseModel"""
 
-from pickletools import string1
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
