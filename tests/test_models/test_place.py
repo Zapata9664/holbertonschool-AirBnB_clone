@@ -3,6 +3,8 @@
 
 import unittest
 from models.place import Place
+from datetime import datetime
+from time import sleep
 
 
 class testPlace(unittest.TestCase):
@@ -50,6 +52,42 @@ class testPlace(unittest.TestCase):
     def test_list_amenity_ids(self):
         """Check if amenity_ids is a list of string"""
         self.assertEqual(list, type(Place.amenity_ids))
+
+    def test_unique_id(self):
+        """Check if the review id in unique"""
+        instance1 = Place()
+        instance2 = Place()
+        self.assertNotEqual(instance1.id, instance2.id)
+
+    def test_instance_createdat(self):
+        """Check if created_at is a intance of Place"""
+        self.assertTrue(hasattr(Place(), "created_at"), True)
+
+    def test_instance(self):
+        """Check if updated_at is a intance of Place"""
+        self.assertTrue(hasattr(Place(), "updated_at"), True)
+
+    def test_public_datetime(self):
+        """Test for a make public datetime"""
+        self.assertEqual(datetime, type(Place().created_at))
+
+    def test_public_datetime_updated(self):
+        """Test for a make public datetime"""
+        self.assertEqual(datetime, type(Place().updated_at))
+
+    def test_less_time_createdat(self):
+        """Check less time in created_at"""
+        instance1 = Place()
+        sleep(0.2)
+        instance2 = Place()
+        self.assertLess(instance1.created_at, instance2.created_at)
+
+    def test_less_time_updatedat(self):
+        """Check less time in updated_at"""
+        instance1 = Place()
+        sleep(0.2)
+        instance2 = Place()
+        self.assertLess(instance1.updated_at, instance2.updated_at)
 
 
 if __name__ == '__main__':
