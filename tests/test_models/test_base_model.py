@@ -134,7 +134,7 @@ class testBaseModel_dic(unittest.TestCase):
         self.assertDictEqual(instance.to_dict(), dic)
 
     def test_whit_arg(self):
-        """check dict None"""
+        """Check dict None"""
         instance = BaseModel()
         with self.assertRaises(TypeError):
             instance.to_dict(None)
