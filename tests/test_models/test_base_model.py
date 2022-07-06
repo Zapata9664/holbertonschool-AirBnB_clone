@@ -120,7 +120,7 @@ class testBaseModel_dic(unittest.TestCase):
         self.assertIn = ("state_id", instance.to_dict())
 
     def test_output(self):
-        """compare output with a dictionary"""
+        """Compare output with a dictionary"""
         time = datetime.now()
         instance = BaseModel()
         instance.id = "0d11af78-4e5e-4a80-ac9b-faaaf8eb2432"
