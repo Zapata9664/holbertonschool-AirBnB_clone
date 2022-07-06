@@ -62,6 +62,10 @@ class testBaseModel(unittest.TestCase):
     def test_base_instance(self):
         """Check if instace is a Intance of BaseModel"""
         self.assertIsInstance(BaseModel(), BaseModel)
+    
+    def test_id(self):
+        """Check if id in an instance"""
+        self.assertTrue(hasattr(BaseModel(), "id"), True)
 
 
 class TestBaseModel_save(unittest.TestCase):
@@ -135,12 +139,28 @@ class testBaseModel_dic(unittest.TestCase):
         with self.assertRaises(TypeError):
             instance.to_dict(None)
 
+    def test_to_dict_values(self):
+        """Tests correct format"""
+        instance = BaseModel()
+        dic = instance.to_dict()
+        self.assertEqual(dic["__class__"], "BaseModel")
+        self.assertEqual(type(dic["created_at"]), str)
+        self.assertEqual(type(dic["updated_at"]), str)
+        self.assertEqual(dic["created_at"],
+                        instance.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
+        self.assertEqual(dic["updated_at"],
+                        instance.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
+
 
 class TestBaseModel_str(unittest.TestCase):
     """Tests for public instance methods: dic"""
     def test_str(self):
         string1 = BaseModel().__str__()
         self.assertEqual(str, type(string1))
+
+    def test__str__(self):
+        """Check if __str__ is a method"""
+        self.assertTrue(hasattr(BaseModel, "__str__"), True)
 
 
 if __name__ == '__main__':
