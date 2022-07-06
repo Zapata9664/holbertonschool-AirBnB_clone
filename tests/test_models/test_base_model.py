@@ -112,7 +112,7 @@ class testBaseModel_dic(unittest.TestCase):
         self.assertIn("__class__", instance.to_dict())
 
     def test_add_attributes(self):
-        """check if add correct attributes"""
+        """Check if add correct attributes"""
         instance = BaseModel()
         instance.price_by_night = "7.500"
         instance.state_id = "Bello"
