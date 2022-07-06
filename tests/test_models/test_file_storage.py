@@ -22,7 +22,7 @@ class test_file_storage(unittest.TestCase):
         self.assertTrue(hasattr(FileStorage(), "new"), True)
 
     def test_method_save(self):
-        """Check if save is a method of file_inst"""
+        """Check if save is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "save"), True)
 
     def test_method_all(self):
