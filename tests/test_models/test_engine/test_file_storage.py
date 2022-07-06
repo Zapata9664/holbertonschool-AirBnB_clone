@@ -5,6 +5,9 @@ import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.place import Place
+from models.amenity import Amenity
 
 
 class test_file_storage(unittest.TestCase):
@@ -42,6 +45,55 @@ class test_file_storage(unittest.TestCase):
         dic = FileStorage().all()
         self.assertEqual(type(dic), dict)
         self.assertIs(dic, FileStorage()._FileStorage__objects)
+
+    def test_private_str(self):
+        """Check private string"""
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
+
+    def test_private_dic(self):
+        """Check private dic"""
+        self.assertEqual(dict, type(FileStorage._FileStorage__objects))
+
+    def test_initializes(self):
+        """initialize storage"""
+        self.assertEqual(type(storage), FileStorage)
+
+
+class TestFileStorage_met(unittest.TestCase):
+    """Class for test methods"""
+
+    def test_for_same_type(self):
+        """Testing that storage same type of dict"""
+        self.assertEqual(dict, type(storage.all()))
+
+    def test_all_arg(self):
+        """Testing all args arg"""
+        with self.assertRaises(TypeError):
+            storage.all(None)
+
+    def test_new_args(self):
+        """Testing new arguments"""
+        with self.assertRaises(TypeError):
+            storage.new(BaseModel(), 1)
+
+    def test_reload_args(self):
+        """Chesk reaload with arguments"""
+        with self.assertRaises(TypeError):
+            storage.reload(None)
+
+    def test_save(self):
+        """Check for method save"""
+        storage.new(BaseModel())
+        storage.new(User())
+        storage.new(Place())
+        storage.new(Amenity())
+        storage.save()
+        storage.reload()
+        endic = FileStorage._FileStorage__objects
+        self.assertIn("BaseModel." + BaseModel().id, endic)
+        self.assertIn("User." + User().id, endic)
+        self.assertIn("Place." + Place().id, endic)
+        self.assertIn("Amenity." + Amenity().id, endic)
 
 
 if __name__ == "__main__":
