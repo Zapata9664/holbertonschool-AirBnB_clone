@@ -18,7 +18,7 @@ class test_file_storage(unittest.TestCase):
         self.assertFalse(hasattr(FileStorage(), "__file_path"), False)
 
     def test_method_new(self):
-        """Check if new is a method of file_inst"""
+        """Check if new is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "new"), True)
 
     def test_method_save(self):
