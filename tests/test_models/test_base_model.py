@@ -104,7 +104,7 @@ class testBaseModel_dic(unittest.TestCase):
     """Tests for public instance methods: dic"""
 
     def test_correct_data(self):
-        """check de correct data"""
+        """Check de correct data"""
         instance = BaseModel()
         self.assertIn("id", instance.to_dict())
         self.assertIn("created_at", instance.to_dict())
