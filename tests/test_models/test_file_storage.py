@@ -34,7 +34,7 @@ class test_file_storage(unittest.TestCase):
         self.assertTrue(hasattr(FileStorage(), "reload"), True)
 
     def test_for_reload(self):
-        """Check if reload is a method of file_inst"""
+        """Check if reload is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "reload"), True)
 
     def test_all_returns_dict(self):
