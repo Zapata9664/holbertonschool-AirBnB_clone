@@ -104,7 +104,7 @@ class testBaseModel_dic(unittest.TestCase):
     """Tests for public instance methods: dic"""
 
     def test_correct_data(self):
-        """check de correct data"""
+        """Check de correct data"""
         instance = BaseModel()
         self.assertIn("id", instance.to_dict())
         self.assertIn("created_at", instance.to_dict())
@@ -112,7 +112,7 @@ class testBaseModel_dic(unittest.TestCase):
         self.assertIn("__class__", instance.to_dict())
 
     def test_add_attributes(self):
-        """check if add correct attributes"""
+        """Check if add correct attributes"""
         instance = BaseModel()
         instance.price_by_night = "7.500"
         instance.state_id = "Bello"
@@ -120,7 +120,7 @@ class testBaseModel_dic(unittest.TestCase):
         self.assertIn = ("state_id", instance.to_dict())
 
     def test_output(self):
-        """compare output with a dictionary"""
+        """Compare output with a dictionary"""
         time = datetime.now()
         instance = BaseModel()
         instance.id = "0d11af78-4e5e-4a80-ac9b-faaaf8eb2432"
@@ -134,7 +134,7 @@ class testBaseModel_dic(unittest.TestCase):
         self.assertDictEqual(instance.to_dict(), dic)
 
     def test_whit_arg(self):
-        """check dict None"""
+        """Check dict None"""
         instance = BaseModel()
         with self.assertRaises(TypeError):
             instance.to_dict(None)

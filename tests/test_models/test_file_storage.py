@@ -18,23 +18,23 @@ class test_file_storage(unittest.TestCase):
         self.assertFalse(hasattr(FileStorage(), "__file_path"), False)
 
     def test_method_new(self):
-        """Check if new is a method of file_inst"""
+        """Check if new is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "new"), True)
 
     def test_method_save(self):
-        """Check if save is a method of file_inst"""
+        """Check if save is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "save"), True)
 
     def test_method_all(self):
-        """Check if all is a method of file_inst"""
+        """Check if all is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "all"), True)
 
     def test_method_reload(self):
-        """Check if reload is a method of file_inst"""
+        """Check if reload is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "reload"), True)
 
     def test_for_reload(self):
-        """Check if reload is a method of file_inst"""
+        """Check if reload is a method of file_instance"""
         self.assertTrue(hasattr(FileStorage(), "reload"), True)
 
     def test_all_returns_dict(self):
