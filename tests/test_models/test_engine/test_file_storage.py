@@ -73,7 +73,7 @@ class file_storage_all(unittest.TestCase):
     """Class for tests method """
 
     def test_all_returns_dict(self):
-        """check if all return FileStorage.__objects attr"""
+        """Check if all return FileStorage.__objects attr"""
         dic = FileStorage().all()
         self.assertEqual(type(dic), dict)
         self.assertIs(dic, FileStorage()._FileStorage__objects)
@@ -97,7 +97,7 @@ class file_storage_new(unittest.TestCase):
     """class for method new"""
 
     def test_new(self):
-        """test new with instances"""
+        """Test new with instances"""
         storage.new(BaseModel())
         storage.new(User())
         storage.new(Place())
