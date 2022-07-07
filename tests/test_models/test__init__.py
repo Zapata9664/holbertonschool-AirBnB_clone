@@ -12,5 +12,6 @@ class test__init__(unittest.TestCase):
         """Check if storage exist"""
         self.assertTrue(storage, True)
 
+
 if __name__ == "__main__":
     unittest.main()

@@ -62,7 +62,7 @@ class testBaseModel(unittest.TestCase):
     def test_base_instance(self):
         """Check if instace is a Intance of BaseModel"""
         self.assertIsInstance(BaseModel(), BaseModel)
-    
+
     def test_id(self):
         """Check if id in an instance"""
         self.assertTrue(hasattr(BaseModel(), "id"), True)
@@ -126,11 +126,11 @@ class testBaseModel_dic(unittest.TestCase):
         instance.id = "0d11af78-4e5e-4a80-ac9b-faaaf8eb2432"
         instance.created_at = instance.updated_at = time
         dic = {
-                "id": "0d11af78-4e5e-4a80-ac9b-faaaf8eb2432",
-                "created_at": time.isoformat(),
-                "updated_at": time.isoformat(),
-                "__class__": "BaseModel"
-                }
+            "id": "0d11af78-4e5e-4a80-ac9b-faaaf8eb2432",
+            "created_at": time.isoformat(),
+            "updated_at": time.isoformat(),
+            "__class__": "BaseModel"
+        }
         self.assertDictEqual(instance.to_dict(), dic)
 
     def test_whit_arg(self):
@@ -147,13 +147,14 @@ class testBaseModel_dic(unittest.TestCase):
         self.assertEqual(type(dic["created_at"]), str)
         self.assertEqual(type(dic["updated_at"]), str)
         self.assertEqual(dic["created_at"],
-                        instance.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
+                         instance.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
         self.assertEqual(dic["updated_at"],
-                        instance.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
+                         instance.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f"))
 
 
 class TestBaseModel_str(unittest.TestCase):
     """Tests for public instance methods: dic"""
+
     def test_str(self):
         string1 = BaseModel().__str__()
         self.assertEqual(str, type(string1))
